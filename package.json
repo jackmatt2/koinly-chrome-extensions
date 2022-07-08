@@ -1,5 +1,5 @@
 {
-  "name": "koinly-chrome-extension",
+  "name": "koinly-chrome-extensions",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "REACT_APP_ENVIRONMENT=development INLINE_RUNTIME_CHUNK=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -39,5 +39,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.191",
+    "prettier": "2.7.1"
   }
 }
