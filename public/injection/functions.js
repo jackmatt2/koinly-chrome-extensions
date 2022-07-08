@@ -29,7 +29,6 @@ const fetchHeaders = () => {
 
 const fetchSession = async () => {
     try {
-        debugger
         const response = await fetch(`${KOINLY_API_URL}/api/sessions`, {
             method: 'GET',
             headers: fetchHeaders(),
@@ -57,7 +56,6 @@ const fetchPage = async (pageNumber) => {
 }
 
 const getAllTransactions = async () => {
-    debugger
     const firstPage = await fetchPage(1);
     const totalPages = firstPage.meta.page.total_pages;
     const promises = [];
