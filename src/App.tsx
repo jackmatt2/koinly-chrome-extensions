@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import { queryIsKoinlyWebsite } from './browser/operations';
-import CSVExport from './pages/csv-export';
+import { useEffect, useState } from "react";
+import "./App.css";
+import { queryIsKoinlyWebsite } from "./browser/operations";
+import CSVExport from "./pages/csv-export";
 
 function App() {
-  const [isKoinlyWebsite, setKoinlyWebsite] = useState(false)
+  const [isKoinlyWebsite, setKoinlyWebsite] = useState(false);
 
   useEffect(() => {
     const run = async () => {
       if (await queryIsKoinlyWebsite()) {
-        setKoinlyWebsite(true)
+        setKoinlyWebsite(true);
       }
-    }
+    };
     run();
-  }, [])
+  }, []);
 
   return (
     <div className="App">
@@ -22,14 +22,14 @@ function App() {
 
         {!isKoinlyWebsite && (
           <div>
-            Please login to <a href='https://app.koinly.io' target="_blank">Koinly</a>
+            Please login to{" "}
+            <a href="https://app.koinly.io" target="_blank">
+              Koinly
+            </a>
           </div>
         )}
 
-        {isKoinlyWebsite && (
-          <CSVExport />
-        )}
-
+        {isKoinlyWebsite && <CSVExport />}
       </header>
     </div>
   );

@@ -64,17 +64,28 @@
 .btn:hover {
   filter: brightness(150%);
 }
-.btn.success {background-color: #4CAF50;} /* Green */
-.btn.primary {background-color: #008CBA;} /* Blue */
-.btn.danger {background-color: #f44336;} /* Red */
-.btn.disabled {background-color: #e7e7e7; color: black;} /* Gray */
-.btn.default {background-color: #555555;} /* Black */
+.btn.success {
+  background-color: #4caf50;
+} /* Green */
+.btn.primary {
+  background-color: #008cba;
+} /* Blue */
+.btn.danger {
+  background-color: #f44336;
+} /* Red */
+.btn.disabled {
+  background-color: #e7e7e7;
+  color: black;
+} /* Gray */
+.btn.default {
+  background-color: #555555;
+} /* Black */
 
-input[type=checkbox] {
+input[type="checkbox"] {
   width: 20px;
   height: 20px;
 }
 
 a:visited {
-  color: #008CBA;
+  color: #008cba;
 }

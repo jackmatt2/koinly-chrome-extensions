@@ -1,1 +1,1 @@
-export type CSVSelections = Record<string, boolean>
+export type CSVSelections = Record<string, boolean>;

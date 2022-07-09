@@ -1,1 +1,1 @@
-fetchSession()
+fetchSession();
