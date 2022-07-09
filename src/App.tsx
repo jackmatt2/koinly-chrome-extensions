@@ -23,7 +23,7 @@ function App() {
         {!isKoinlyWebsite && (
           <div>
             Please login to{" "}
-            <a href="https://app.koinly.io" target="_blank">
+            <a href="https://app.koinly.io" target="_blank" rel="noreferrer">
               Koinly
             </a>
           </div>

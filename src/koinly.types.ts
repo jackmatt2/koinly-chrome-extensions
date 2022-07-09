@@ -1,5 +1,7 @@
 export interface KoinlySession {
-  portfolios: Array<object>;
+  portfolios: Array<{
+    base_currency: unknown;
+  }>;
 }
 
 export interface KoinlyPage {
@@ -14,4 +16,6 @@ export interface KoinlyTransactionsPage extends KoinlyPage {
   transactions: KoinlyTransaction[];
 }
 
-export interface KoinlyTransaction {}
+export interface KoinlyTransaction {
+  [key: string]: object | string | number;
+}
