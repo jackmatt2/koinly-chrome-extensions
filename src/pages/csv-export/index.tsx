@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AppContext, IAppContextValues } from '../../app-context/app-context';
 import { CSVSelections } from '../../app-context/types';
-import { getTabID } from '../../browser/operations';
+import { getTabID, injectScripts } from '../../browser/operations';
 import { toCSVFile as downloadCSVFile } from '../../export/csv/csv';
 import { updateToLatest } from '../../storage/operations';
 
@@ -28,19 +28,32 @@ function CSVExport() {
   };
 
   const handleRefreshCache = async () => {
-    try {
-      setLoading(true);
-      const tabId = await getTabID()
-      if (tabId) {
-        const data = await updateToLatest(tabId, csvSelections);
-        setCacheTime(data?.cacheTime)
-        setCSVSelections(data?.csvSelections)
-        setSession(data?.session)
-        setTransactions(data?.transactions)
+    chrome.permissions.request({
+      permissions: ['scripting']
+    }, async (granted) => {
+      if (granted) {
+        try {
+          setLoading(true);
+          await injectScripts();
+          const tabId = await getTabID()
+          if (tabId) {
+            const data = await updateToLatest(tabId, csvSelections);
+            setCacheTime(data?.cacheTime)
+            setCSVSelections(data?.csvSelections)
+            setSession(data?.session)
+            setTransactions(data?.transactions)
+          }
+        } finally {
+          chrome.permissions.remove({
+            permissions: ['scripting'],
+          })
+          setLoading(false);
+        }
+      } else {
+        alert('We require scripting permission to dowload your transaction history');
+        setLoading(false);
       }
-    } finally {
-      setLoading(false);
-    }
+    });
   }
 
   const handleClearCache = async () => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { injectScripts, queryIsKoinlyWebsite } from './browser/operations';
+import { queryIsKoinlyWebsite } from './browser/operations';
 import CSVExport from './pages/csv-export';
 
 function App() {
@@ -9,7 +9,6 @@ function App() {
   useEffect(() => {
     const run = async () => {
       if (await queryIsKoinlyWebsite()) {
-        await injectScripts();
         setKoinlyWebsite(true)
       }
     }

@@ -1,13 +1,7 @@
 {
-  "name": "Koinly Extensions",
-  "description": "Adds CSV Export for https://koinly.io",
-  "version": "1.0",
   "manifest_version": 3,
-  "permissions": [
-     "activeTab",
-     "scripting",
-     "storage"
-  ],
+  "name": "Koinly Extensions",
+  "version": "1.0",
   "action": {
     "default_popup": "index.html",
     "default_title": "Koinly Extensions",
@@ -18,13 +12,18 @@
        "128": "/images/logo_128.png"
      }
   },
+  "description": "Extends the functionality of https://koinly.io with features that are not supported by the core team",
   "icons": {
     "16": "/images/logo_16.png",
     "32": "/images/logo_32.png",
     "48": "/images/logo_48.png",
     "128": "/images/logo_128.png"
   },
-  "host_permissions": [
-    "https://koinly.io/"
+  "permissions": [
+     "activeTab",
+     "storage"
+  ],
+  "optional_permissions": [
+    "scripting"
   ]
 }

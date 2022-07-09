@@ -19,5 +19,5 @@ export default <T>(storageKey: StorageKey, defaultValue: T): [v: T, s: (v: T) =>
         setValue(newValue);
     }, []);
 
-    return [ value, setter ]
+    return [ value ?? defaultValue, setter ]
 }

@@ -1,13 +1,13 @@
-const PAGE_COUNT = 25;
-const KOINLY_API_URL = 'https://api.koinly.io'
+let PAGE_COUNT = 25;
+let KOINLY_API_URL = 'https://api.koinly.io'
 
-const getCookie = (name) => {
+let getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts?.pop()?.split(';').shift();
 }
 
-const fetchHeaders = () => {
+let fetchHeaders = () => {
     const headers = new Headers();
     headers.append('authority', 'api.koinly.io');
     headers.append('accept', 'application/json, text/plain, */*');
@@ -27,7 +27,7 @@ const fetchHeaders = () => {
     return headers;
 }
 
-const fetchSession = async () => {
+let fetchSession = async () => {
     try {
         const response = await fetch(`${KOINLY_API_URL}/api/sessions`, {
             method: 'GET',
@@ -41,7 +41,7 @@ const fetchSession = async () => {
     }
 }
 
-const fetchPage = async (pageNumber) => {
+let fetchPage = async (pageNumber) => {
     try {
         const response = await fetch(`${KOINLY_API_URL}/api/transactions?per_page=${PAGE_COUNT}&order=date&page=${pageNumber}`, {
             method: 'GET',
@@ -55,7 +55,7 @@ const fetchPage = async (pageNumber) => {
     }
 }
 
-const getAllTransactions = async () => {
+let getAllTransactions = async () => {
     const firstPage = await fetchPage(1);
     const totalPages = firstPage.meta.page.total_pages;
     const promises = [];
