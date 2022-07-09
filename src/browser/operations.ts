@@ -37,7 +37,9 @@ export const getKoinlySession = async (
     chrome.scripting.executeScript(
       {
         target: { tabId },
-        files: ["injection/session.js"],
+        func: () => {
+          return window.KoinlyExtensions.fetchSession()
+        }
       },
       (result) => {
         const session = result[0].result;
@@ -59,7 +61,9 @@ export const getKoinlyTransactions = async (
     chrome.scripting.executeScript(
       {
         target: { tabId },
-        files: ["injection/transactions.js"],
+        func: () => {
+          return window.KoinlyExtensions.getAllTransactions()
+        }
       },
       (result) => {
         const transactions = result[0].result;
