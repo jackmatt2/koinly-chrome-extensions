@@ -1,14 +1,14 @@
-(function() {
+(function () {
   const PAGE_COUNT = 25;
-  const KOINLY_API_HOST = "api.koinly.io"
+  const KOINLY_API_HOST = "api.koinly.io";
   const KOINLY_API_URL = `https://${KOINLY_API_HOST}`;
-  
+
   const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts?.pop()?.split(";").shift();
   };
-  
+
   const fetchHeaders = () => {
     const headers = new Headers();
     headers.append("authority", KOINLY_API_HOST);
@@ -28,7 +28,7 @@
     headers.append("x-portfolio-token", getCookie("PORTFOLIO_ID") ?? "");
     return headers;
   };
-  
+
   const fetchSession = async () => {
     try {
       const response = await fetch(`${KOINLY_API_URL}/api/sessions`, {
@@ -42,7 +42,7 @@
       throw new Error("Fetch session failed");
     }
   };
-  
+
   const fetchPage = async (pageNumber) => {
     try {
       const response = await fetch(
@@ -59,7 +59,7 @@
       throw new Error(`Fetch failed for page=${pageNumber}`);
     }
   };
-  
+
   const getAllTransactions = async () => {
     const firstPage = await fetchPage(1);
     const totalPages = firstPage.meta.page.total_pages;
@@ -76,5 +76,5 @@
   window.KoinlyExtensions = {
     getAllTransactions,
     fetchSession,
-  }
-})()
+  };
+})();

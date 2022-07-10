@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { queryIsKoinlyWebsite } from "./browser/operations";
+import { Tab, Tabs } from "./components/tabs/tabs";
 import CSVExport from "./pages/csv-export";
+import CacheControl from "./components/cache-control";
 
 function App() {
   const [isKoinlyWebsite, setKoinlyWebsite] = useState(false);
@@ -29,7 +31,17 @@ function App() {
           </div>
         )}
 
-        {isKoinlyWebsite && <CSVExport />}
+        {isKoinlyWebsite && (
+          <>
+            <CacheControl />
+            <Tabs>
+              <Tab title="CSV Export">
+                <CSVExport />
+              </Tab>
+              <Tab title="Wallet Aliases">Coming Soon!</Tab>
+            </Tabs>
+          </>
+        )}
       </header>
     </div>
   );

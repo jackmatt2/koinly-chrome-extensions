@@ -38,8 +38,8 @@ export const getKoinlySession = async (
       {
         target: { tabId },
         func: () => {
-          return window.KoinlyExtensions.fetchSession()
-        }
+          return window.KoinlyExtensions.fetchSession();
+        },
       },
       (result) => {
         const session = result[0].result;
@@ -62,8 +62,8 @@ export const getKoinlyTransactions = async (
       {
         target: { tabId },
         func: () => {
-          return window.KoinlyExtensions.getAllTransactions()
-        }
+          return window.KoinlyExtensions.getAllTransactions();
+        },
       },
       (result) => {
         const transactions = result[0].result;
