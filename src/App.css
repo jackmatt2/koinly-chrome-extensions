@@ -49,7 +49,7 @@
 .btn.danger {
   background-color: #f44336;
 } /* Red */
-.btn.disabled {
+.btn[disabled] {
   background-color: #e7e7e7;
   color: black;
 } /* Gray */

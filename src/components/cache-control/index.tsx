@@ -9,6 +9,7 @@ function CacheControl() {
     setCacheTime,
     cacheTime,
     setTransactions,
+    transactions,
     setSession,
     setCSVSelections,
     csvSelections,
@@ -49,9 +50,9 @@ function CacheControl() {
   };
 
   const handleClearCache = async () => {
-    await setCacheTime(undefined);
+    await setCacheTime(null);
     await setTransactions([]);
-    await setSession(undefined);
+    await setSession(null);
   };
 
   return (
@@ -76,7 +77,7 @@ function CacheControl() {
       <div>
         <small>
           Last Refreshed:{" "}
-          {cacheTime ? new Date(cacheTime).toLocaleString() : "Never"}
+          {cacheTime ? `${new Date(cacheTime).toLocaleString()} (${transactions.length} transactions)` : "Never"}
         </small>
       </div>
       <div>
