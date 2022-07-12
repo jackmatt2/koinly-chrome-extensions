@@ -33,7 +33,7 @@ function CSVExport() {
           onClick={handleDownloadCSV}
           disabled={!transactions.length}
         >
-          Export to CSV
+          Download
         </button>
       </div>
       <div className="row">
