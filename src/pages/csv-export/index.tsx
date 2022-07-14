@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AppContext, IAppContextValues } from "../../app-context/app-context";
 import { CSVSelections } from "../../app-context/types";
 import { toCSVFile as downloadCSVFile } from "../../export/csv/csv";
@@ -7,6 +7,13 @@ function CSVExport() {
   const { transactions, session, setCSVSelections, csvSelections } =
     useContext(AppContext);
   const [ toggleAllState, setToggleAllState] = useState(false)
+
+  // Updated selection toggle based on all items being already selected
+  useEffect(() => {
+    const notSelected = Object.keys(csvSelections)
+      .filter(it => !csvSelections[it]);
+    setToggleAllState(notSelected.length === 0);
+  }, [csvSelections])
 
   const handleDownloadCSV = async () => {
     if (!transactions || !session) {
@@ -22,6 +29,7 @@ function CSVExport() {
     Object.keys(csvSelections).forEach(key => {
       csvSelections[key] = state
     });
+    setCSVSelections(csvSelections)
     setToggleAllState(state)
   }
 
