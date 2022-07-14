@@ -77,7 +77,11 @@ function CacheControl() {
       <div>
         <small>
           Last Refreshed:{" "}
-          {cacheTime ? `${new Date(cacheTime).toLocaleString()} (${transactions.length} transactions)` : "Never"}
+          {cacheTime
+            ? `${new Date(cacheTime).toLocaleString()} (${
+                transactions.length
+              } transactions)`
+            : "Never"}
         </small>
       </div>
       <div>

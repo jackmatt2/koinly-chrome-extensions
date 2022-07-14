@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 type StorageKey = "transactions" | "cacheTime" | "session" | "csvSelections";
-type StorageArea = 'session' | 'local' | 'sync' | 'managed'
+type StorageArea = "session" | "local" | "sync" | "managed";
 
 const useChromeStorage = <T>(
   storageKey: StorageKey,
@@ -10,7 +10,7 @@ const useChromeStorage = <T>(
 ): [vlue: T, setValue: (v: T) => void, persistent: boolean, error: string] => {
   const [value, setValue] = useState<T>(defaultValue);
   const [isPersistent, setIsPersistent] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     chrome.storage[storageArea].get([storageKey], (result) => {
@@ -21,16 +21,19 @@ const useChromeStorage = <T>(
 
   // Keep state in sync with actual underlying storage
   useEffect(() => {
-    const onChange = (changes: { [key: string]: chrome.storage.StorageChange; }, areaName: StorageArea) => {
-        if (areaName === storageArea && storageKey in changes) {
-          setValue(changes[storageKey].newValue)
-          setIsPersistent(true);
-          setError('');
-        }
+    const onChange = (
+      changes: { [key: string]: chrome.storage.StorageChange },
+      areaName: StorageArea
+    ) => {
+      if (areaName === storageArea && storageKey in changes) {
+        setValue(changes[storageKey].newValue);
+        setIsPersistent(true);
+        setError("");
+      }
     };
     chrome.storage.onChanged.addListener(onChange);
     return () => {
-        chrome.storage.onChanged.removeListener(onChange);
+      chrome.storage.onChanged.removeListener(onChange);
     };
   }, [storageKey]);
 
@@ -49,10 +52,10 @@ const useChromeStorage = <T>(
 
 export const useChromeStorageLocal = <T>(
   storageKey: StorageKey,
-  defaultValue: T,
-) => useChromeStorage<T>(storageKey, defaultValue, 'local')
+  defaultValue: T
+) => useChromeStorage<T>(storageKey, defaultValue, "local");
 
 export const useChromeStorageSync = <T>(
   storageKey: StorageKey,
-  defaultValue: T,
-) => useChromeStorage<T>(storageKey, defaultValue, 'sync')
+  defaultValue: T
+) => useChromeStorage<T>(storageKey, defaultValue, "sync");

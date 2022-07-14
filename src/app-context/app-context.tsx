@@ -1,5 +1,5 @@
 import React from "react";
-import { useChromeStorageLocal, useChromeStorageSync} from "../hooks";
+import { useChromeStorageLocal, useChromeStorageSync } from "../hooks";
 import { KoinlySession, KoinlyTransaction } from "../koinly.types";
 import { CSVSelections } from "./types";
 

@@ -6,14 +6,15 @@ import { toCSVFile as downloadCSVFile } from "../../export/csv/csv";
 function CSVExport() {
   const { transactions, session, setCSVSelections, csvSelections } =
     useContext(AppContext);
-  const [ toggleAllState, setToggleAllState] = useState(false)
+  const [toggleAllState, setToggleAllState] = useState(false);
 
   // Updated selection toggle based on all items being already selected
   useEffect(() => {
-    const notSelected = Object.keys(csvSelections)
-      .filter(it => !csvSelections[it]);
+    const notSelected = Object.keys(csvSelections).filter(
+      (it) => !csvSelections[it]
+    );
     setToggleAllState(notSelected.length === 0);
-  }, [csvSelections])
+  }, [csvSelections]);
 
   const handleDownloadCSV = async () => {
     if (!transactions || !session) {
@@ -26,12 +27,12 @@ function CSVExport() {
 
   const handleToggleAll = (e: React.ChangeEvent<HTMLInputElement>) => {
     const state = e.target.checked;
-    Object.keys(csvSelections).forEach(key => {
-      csvSelections[key] = state
+    Object.keys(csvSelections).forEach((key) => {
+      csvSelections[key] = state;
     });
-    setCSVSelections(csvSelections)
-    setToggleAllState(state)
-  }
+    setCSVSelections(csvSelections);
+    setToggleAllState(state);
+  };
 
   return (
     <div className="column">
@@ -46,10 +47,14 @@ function CSVExport() {
       </div>
       <div className="row">
         <label>Select All</label>
-        <input type="checkbox" checked={toggleAllState} onChange={handleToggleAll} />
+        <input
+          type="checkbox"
+          checked={toggleAllState}
+          onChange={handleToggleAll}
+        />
       </div>
       <div className="row">
-        <hr style={{width: '100%'}}/>
+        <hr style={{ width: "100%" }} />
       </div>
       {csvSelections && (
         <CSVColumns

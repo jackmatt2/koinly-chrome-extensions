@@ -1,1 +1,1 @@
-export * from './chrome-storage/useChromeStorage'
+export * from "./chrome-storage/useChromeStorage";
