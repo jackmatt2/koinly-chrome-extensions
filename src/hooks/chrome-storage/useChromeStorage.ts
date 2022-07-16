@@ -15,7 +15,9 @@ const useChromeStorage = <T>(
   useEffect(() => {
     chrome.storage[storageArea].get([storageKey], (result) => {
       console.log(`initial: setting ${storageKey}=`, result[storageKey]);
-      setValue(result[storageKey]);
+      if (result[storageKey]) {
+        setValue(result[storageKey]);
+      }
     });
   }, [setValue, storageKey]);
 
