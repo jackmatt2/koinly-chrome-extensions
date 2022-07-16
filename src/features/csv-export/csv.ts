@@ -1,22 +1,7 @@
 import { CSVSelections } from "../../app-context/types";
 import { KoinlyTransaction } from "../../koinly.types";
 
-// const defaultCSVSelections: CSVSelections = {
-//     'date': true,
-//     'from.amount': true,
-//     'from.currency.symbol': true,
-//     'to.amount': true,
-//     'to.currency.symbol': true,
-//     'fee.amount': true,
-//     'fee.currency.symbol': true,
-//     'net_value': true,
-//     //baseCurrency,
-//     'type': true,
-//     'description': true,
-//     'txhash': true,
-// }
-
-const getValueFromPath = (
+export const getValueFromPath = (
   obj: object,
   path: string
 ): string | number | undefined | null => {
@@ -34,7 +19,7 @@ const toRow = (k: KoinlyTransaction, selections: CSVSelections) => {
     .map((path) => getValueFromPath(k, path));
 };
 
-const getHeaderFromPath = (path: string) =>
+export const getHeaderFromPath = (path: string) =>
   path
     .replaceAll("_", ".")
     .split(".")

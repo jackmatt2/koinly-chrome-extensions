@@ -1,6 +1,6 @@
 import { CSVSelections } from "../app-context/types";
 import { getKoinlySession, getKoinlyTransactions } from "../browser/operations";
-import { toCSVSelections } from "../export/csv/csv-selections";
+import { toCSVSelections } from "../features/csv-export/csv-selections";
 
 export const updateToLatest = async (
   tabId: number,
