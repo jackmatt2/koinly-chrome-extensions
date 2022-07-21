@@ -78,7 +78,7 @@ function CSVExport() {
           startIcon={<DownloadIcon />}
           variant="outlined"
           color="success"
-          onClick={handleDownloadKoinlyFormat}
+          onClick={handleDownloadCustom}
           disabled={!transactions.length}
         >
           Custom
