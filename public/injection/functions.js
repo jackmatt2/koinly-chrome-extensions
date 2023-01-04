@@ -4,10 +4,17 @@
   const KOINLY_API_URL = `https://${KOINLY_API_HOST}`;
 
   const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts?.pop()?.split(";").shift();
-  };
+    const cookies = document.cookie.split('; ');
+    const cookieMap = cookies.map(it => it.split('='))
+        .reduce((prev, curr) => {
+            const [key, value] = curr;
+            return {
+                ...prev,
+                [key]: value,
+            }
+        }, {})
+    return cookieMap[name]
+  }
 
   const fetchHeaders = () => {
     const headers = new Headers();
